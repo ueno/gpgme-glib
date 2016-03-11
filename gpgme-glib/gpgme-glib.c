@@ -57,10 +57,10 @@ enum {
 static GParamSpec *engine_info_pspecs[ENGINE_INFO_LAST_PROP] = { NULL, };
 
 static void
-g_gpg_engine_info_set_property (GObject *object,
-                                guint property_id,
+g_gpg_engine_info_set_property (GObject      *object,
+                                guint         property_id,
                                 const GValue *value,
-                                GParamSpec *pspec)
+                                GParamSpec   *pspec)
 {
   GGpgEngineInfo *engine_info = G_GPG_ENGINE_INFO (object);
 
@@ -96,9 +96,9 @@ g_gpg_engine_info_set_property (GObject *object,
 }
 
 static void
-g_gpg_engine_info_get_property (GObject *object,
-                                guint property_id,
-                                GValue *value,
+g_gpg_engine_info_get_property (GObject    *object,
+                                guint       property_id,
+                                GValue     *value,
                                 GParamSpec *pspec)
 {
   GGpgEngineInfo *engine_info = G_GPG_ENGINE_INFO (object);
@@ -181,10 +181,10 @@ enum {
 static GParamSpec *data_pspecs[DATA_LAST_PROP] = { NULL, };
 
 static void
-g_gpg_data_set_property (GObject *object,
-                         guint property_id,
+g_gpg_data_set_property (GObject      *object,
+                         guint         property_id,
                          const GValue *value,
-                         GParamSpec *pspec)
+                         GParamSpec   *pspec)
 {
   GGpgData *data = G_GPG_DATA (object);
 
@@ -258,7 +258,8 @@ g_gpg_data_new_from_bytes (GBytes *bytes)
 }
 
 GGpgData *
-g_gpg_data_new_from_fd (gint fd, GError **error)
+g_gpg_data_new_from_fd (gint     fd,
+                        GError **error)
 {
   gpgme_data_t data;
   gpgme_error_t err;
@@ -270,19 +271,25 @@ g_gpg_data_new_from_fd (gint fd, GError **error)
 }
 
 gssize
-g_gpg_data_read (GGpgData *data, gpointer buffer, gsize size)
+g_gpg_data_read (GGpgData *data,
+                 gpointer  buffer,
+                 gsize     size)
 {
   return gpgme_data_read (data->pointer, buffer, size);
 }
 
 gssize
-g_gpg_data_write (GGpgData *data, gconstpointer buffer, gsize size)
+g_gpg_data_write (GGpgData      *data,
+                  gconstpointer  buffer,
+                  gsize          size)
 {
   return gpgme_data_write (data->pointer, buffer, size);
 }
 
 goffset
-g_gpg_data_seek (GGpgData *data, goffset offset, GSeekType whence)
+g_gpg_data_seek (GGpgData  *data,
+                 goffset    offset,
+                 GSeekType  whence)
 {
   return gpgme_data_seek (data->pointer, offset, whence);
 }
@@ -330,10 +337,10 @@ enum {
 static GParamSpec *ctx_pspecs[CTX_LAST_PROP] = { NULL, };
 
 static void
-g_gpg_ctx_set_property (GObject *object,
-                        guint property_id,
+g_gpg_ctx_set_property (GObject      *object,
+                        guint         property_id,
                         const GValue *value,
-                        GParamSpec *pspec)
+                        GParamSpec   *pspec)
 {
   GGpgCtx *ctx = G_GPG_CTX (object);
 
@@ -374,9 +381,9 @@ g_gpg_ctx_set_property (GObject *object,
 }
 
 static void
-g_gpg_ctx_get_property (GObject *object,
-                        guint property_id,
-                        GValue *value,
+g_gpg_ctx_get_property (GObject    *object,
+                        guint       property_id,
+                        GValue     *value,
                         GParamSpec *pspec)
 {
   GGpgCtx *ctx = G_GPG_CTX (object);
@@ -497,10 +504,10 @@ g_gpg_ctx_new (GError **error)
 }
 
 void
-g_gpg_ctx_set_progress_callback (GGpgCtx *ctx,
-                                 GGpgProgressCallback callback,
-                                 gpointer user_data,
-                                 GDestroyNotify destroy_data)
+g_gpg_ctx_set_progress_callback (GGpgCtx              *ctx,
+                                 GGpgProgressCallback  callback,
+                                 gpointer              user_data,
+                                 GDestroyNotify        destroy_data)
 {
   if (ctx->progress_destroy)
     ctx->progress_destroy (ctx->progress_user_data);
@@ -541,10 +548,10 @@ enum {
 static GParamSpec *subkey_pspecs[SUBKEY_LAST_PROP] = { NULL, };
 
 static void
-g_gpg_subkey_set_property (GObject *object,
-                        guint property_id,
-                        const GValue *value,
-                        GParamSpec *pspec)
+g_gpg_subkey_set_property (GObject      *object,
+                           guint         property_id,
+                           const GValue *value,
+                           GParamSpec   *pspec)
 {
   GGpgSubkey *subkey = G_GPG_SUBKEY (object);
 
@@ -565,9 +572,9 @@ g_gpg_subkey_set_property (GObject *object,
 }
 
 static void
-g_gpg_subkey_get_property (GObject *object,
-                           guint property_id,
-                           GValue *value,
+g_gpg_subkey_get_property (GObject    *object,
+                           guint       property_id,
+                           GValue     *value,
                            GParamSpec *pspec)
 {
   GGpgSubkey *subkey = G_GPG_SUBKEY (object);
@@ -754,10 +761,10 @@ enum {
 static GParamSpec *key_sig_pspecs[KEY_SIG_LAST_PROP] = { NULL, };
 
 static void
-g_gpg_key_sig_set_property (GObject *object,
-                            guint property_id,
+g_gpg_key_sig_set_property (GObject      *object,
+                            guint         property_id,
                             const GValue *value,
-                            GParamSpec *pspec)
+                            GParamSpec   *pspec)
 {
   GGpgKeySig *key_sig = G_GPG_KEY_SIG (object);
 
@@ -778,9 +785,9 @@ g_gpg_key_sig_set_property (GObject *object,
 }
 
 static void
-g_gpg_key_sig_get_property (GObject *object,
-                            guint property_id,
-                            GValue *value,
+g_gpg_key_sig_get_property (GObject    *object,
+                            guint       property_id,
+                            GValue     *value,
                             GParamSpec *pspec)
 {
   GGpgKeySig *key_sig = G_GPG_KEY_SIG (object);
@@ -945,10 +952,10 @@ enum {
 static GParamSpec *user_id_pspecs[USER_ID_LAST_PROP] = { NULL, };
 
 static void
-g_gpg_user_id_set_property (GObject *object,
-                         guint property_id,
-                         const GValue *value,
-                         GParamSpec *pspec)
+g_gpg_user_id_set_property (GObject      *object,
+                            guint         property_id,
+                            const GValue *value,
+                            GParamSpec   *pspec)
 {
   GGpgUserId *user_id = G_GPG_USER_ID (object);
 
@@ -969,10 +976,10 @@ g_gpg_user_id_set_property (GObject *object,
 }
 
 static void
-g_gpg_user_id_get_property (GObject *object,
-                         guint property_id,
-                         GValue *value,
-                         GParamSpec *pspec)
+g_gpg_user_id_get_property (GObject    *object,
+                            guint       property_id,
+                            GValue     *value,
+                            GParamSpec *pspec)
 {
   GGpgUserId *user_id = G_GPG_USER_ID (object);
 
@@ -1122,10 +1129,10 @@ enum {
 static GParamSpec *key_pspecs[KEY_LAST_PROP] = { NULL, };
 
 static void
-g_gpg_key_set_property (GObject *object,
-                        guint property_id,
+g_gpg_key_set_property (GObject      *object,
+                        guint         property_id,
                         const GValue *value,
-                        GParamSpec *pspec)
+                        GParamSpec   *pspec)
 {
   GGpgKey *key = G_GPG_KEY (object);
 
@@ -1142,9 +1149,9 @@ g_gpg_key_set_property (GObject *object,
 }
 
 static void
-g_gpg_key_get_property (GObject *object,
-                        guint property_id,
-                        GValue *value,
+g_gpg_key_get_property (GObject    *object,
+                        guint       property_id,
+                        GValue     *value,
                         GParamSpec *pspec)
 {
   GGpgKey *key = G_GPG_KEY (object);
@@ -1348,7 +1355,8 @@ struct GGpgSource
 };
 
 static gboolean
-g_gpg_source_prepare (GSource *_source, gint *timeout)
+g_gpg_source_prepare (GSource *_source,
+                      gint    *timeout)
 {
   struct GGpgSource *source = (struct GGpgSource *) _source;
 
@@ -1383,9 +1391,9 @@ g_gpg_source_check (GSource *_source)
 }
 
 static gboolean
-g_gpg_source_dispatch (GSource *_source,
-                       GSourceFunc callback,
-                       gpointer user_data)
+g_gpg_source_dispatch (GSource     *_source,
+                       GSourceFunc  callback,
+                       gpointer     user_data)
 {
   struct GGpgSource *source = (struct GGpgSource *) _source;
   gint index;
@@ -1442,8 +1450,12 @@ static GSourceFuncs g_gpg_source_funcs =
   };
 
 static gpgme_error_t
-g_gpg_add_io_cb (void *data, int fd, int dir, gpgme_io_cb_t fnc, void *fnc_data,
-                 void **r_tag)
+g_gpg_add_io_cb (void           *data,
+                 int             fd,
+                 int             dir,
+                 gpgme_io_cb_t   fnc,
+                 void           *fnc_data,
+                 void          **r_tag)
 {
   struct GGpgSource *source = data;
   struct GGpgSourceFd *to_add;
@@ -1490,7 +1502,9 @@ g_gpg_remove_io_cb (void *tag)
 }
 
 static void
-g_gpg_event_io_cb (void *data, gpgme_event_io_t type, void *type_data)
+g_gpg_event_io_cb (void             *data,
+                   gpgme_event_io_t  type,
+                   void             *type_data)
 {
   struct GGpgSource *source = data;
 
@@ -1550,7 +1564,8 @@ g_gpg_event_io_cb (void *data, gpgme_event_io_t type, void *type_data)
 }
 
 static GSource *
-g_gpg_source_new (GGpgCtx *ctx, gsize size)
+g_gpg_source_new (GGpgCtx *ctx,
+                  gsize    size)
 {
   struct GGpgSource *source;
   struct gpgme_io_cbs io_cbs;
@@ -1594,14 +1609,15 @@ _g_gpg_source_func (gpointer user_data)
 }
 
 static void
-_g_gpg_source_cancel (GCancellable *cancellable, struct GGpgSource *source)
+_g_gpg_source_cancel (GCancellable      *cancellable,
+                      struct GGpgSource *source)
 {
   gpgme_cancel (source->ctx->pointer);
 }
 
 static void
 g_gpg_source_connect_cancellable (struct GGpgSource *source,
-                                  GCancellable *cancellable)
+                                  GCancellable      *cancellable)
 {
   if (cancellable)
     {
@@ -1627,10 +1643,10 @@ g_gpg_keylist_source_finalize (GSource *_source)
 }
 
 static void
-_g_gpg_ctx_keylist_begin (GGpgCtx *ctx,
+_g_gpg_ctx_keylist_begin (GGpgCtx                  *ctx,
                           struct GGpgKeylistSource *source,
-                          GTask *task,
-                          GCancellable *cancellable)
+                          GTask                    *task,
+                          GCancellable             *cancellable)
 {
   gpgme_error_t err;
 
@@ -1663,15 +1679,15 @@ _g_gpg_ctx_keylist_begin (GGpgCtx *ctx,
  *
  */
 void
-g_gpg_ctx_keylist (GGpgCtx *ctx,
-                   const gchar * const * patterns,
-                   gboolean secret_only,
-                   GGpgKeylistCallback keylist_callback,
-                   gpointer keylist_user_data,
-                   GDestroyNotify keylist_destroy,
-                   GCancellable *cancellable,
-                   GAsyncReadyCallback callback,
-                   gpointer user_data)
+g_gpg_ctx_keylist (GGpgCtx             *ctx,
+                   const gchar * const *patterns,
+                   gboolean             secret_only,
+                   GGpgKeylistCallback  keylist_callback,
+                   gpointer             keylist_user_data,
+                   GDestroyNotify       keylist_destroy,
+                   GCancellable        *cancellable,
+                   GAsyncReadyCallback  callback,
+                   gpointer             user_data)
 {
   GTask *task;
   struct GGpgKeylistSource *source;
@@ -1689,8 +1705,9 @@ g_gpg_ctx_keylist (GGpgCtx *ctx,
 }
 
 gboolean
-g_gpg_ctx_keylist_finish (GGpgCtx *ctx, GAsyncResult *result,
-                          GError **error)
+g_gpg_ctx_keylist_finish (GGpgCtx       *ctx,
+                          GAsyncResult  *result,
+                          GError       **error)
 {
   g_return_val_if_fail (g_task_is_valid (result, ctx), FALSE);
   return g_task_propagate_boolean (G_TASK (result), error);
@@ -1715,10 +1732,10 @@ g_gpg_generate_key_source_finalize (GSource *_source)
 }
 
 static void
-_g_gpg_ctx_generate_key_begin (GGpgCtx *ctx,
+_g_gpg_ctx_generate_key_begin (GGpgCtx                      *ctx,
                                struct GGpgGenerateKeySource *source,
-                               GTask *task,
-                               GCancellable *cancellable)
+                               GTask                        *task,
+                               GCancellable                 *cancellable)
 {
   gpgme_error_t err;
 
@@ -1749,11 +1766,13 @@ _g_gpg_ctx_generate_key_begin (GGpgCtx *ctx,
  *
  */
 void
-g_gpg_ctx_generate_key (GGpgCtx *ctx, const gchar *parms,
-                        GGpgData *pubkey, GGpgData *seckey,
-                        GCancellable *cancellable,
-                        GAsyncReadyCallback callback,
-                        gpointer user_data)
+g_gpg_ctx_generate_key (GGpgCtx             *ctx,
+                        const gchar         *parms,
+                        GGpgData            *pubkey,
+                        GGpgData            *seckey,
+                        GCancellable        *cancellable,
+                        GAsyncReadyCallback  callback,
+                        gpointer             user_data)
 {
   GTask *task;
   struct GGpgGenerateKeySource *source;
@@ -1769,8 +1788,9 @@ g_gpg_ctx_generate_key (GGpgCtx *ctx, const gchar *parms,
 }
 
 gboolean
-g_gpg_ctx_generate_key_finish (GGpgCtx *ctx, GAsyncResult *result,
-                               GError **error)
+g_gpg_ctx_generate_key_finish (GGpgCtx       *ctx,
+                               GAsyncResult  *result,
+                               GError       **error)
 {
   g_return_val_if_fail (g_task_is_valid (result, ctx), FALSE);
   return g_task_propagate_boolean (G_TASK (result), error);
@@ -1791,10 +1811,10 @@ g_gpg_delete_source_finalize (GSource *_source)
 }
 
 static void
-_g_gpg_ctx_delete_begin (GGpgCtx *ctx,
+_g_gpg_ctx_delete_begin (GGpgCtx                 *ctx,
                          struct GGpgDeleteSource *source,
-                         GTask *task,
-                         GCancellable *cancellable)
+                         GTask                   *task,
+                         GCancellable            *cancellable)
 {
   gpgme_error_t err;
 
@@ -1813,10 +1833,12 @@ _g_gpg_ctx_delete_begin (GGpgCtx *ctx,
 }
 
 void
-g_gpg_ctx_delete (GGpgCtx *ctx, GGpgKey *key, GGpgDeleteFlags flags,
-                  GCancellable *cancellable,
-                  GAsyncReadyCallback callback,
-                  gpointer user_data)
+g_gpg_ctx_delete (GGpgCtx             *ctx,
+                  GGpgKey             *key,
+                  GGpgDeleteFlags      flags,
+                  GCancellable        *cancellable,
+                  GAsyncReadyCallback  callback,
+                  gpointer             user_data)
 {
   GTask *task;
   struct GGpgDeleteSource *source;
@@ -1831,7 +1853,9 @@ g_gpg_ctx_delete (GGpgCtx *ctx, GGpgKey *key, GGpgDeleteFlags flags,
 }
 
 gboolean
-g_gpg_ctx_delete_finish (GGpgCtx *ctx, GAsyncResult *result, GError **error)
+g_gpg_ctx_delete_finish (GGpgCtx       *ctx,
+                         GAsyncResult  *result,
+                         GError       **error)
 {
   g_return_val_if_fail (g_task_is_valid (result, ctx), FALSE);
   return g_task_propagate_boolean (G_TASK (result), error);
@@ -1853,10 +1877,10 @@ g_gpg_change_password_source_finalize (GSource *_source)
 }
 
 static void
-_g_gpg_ctx_change_password_begin (GGpgCtx *ctx,
+_g_gpg_ctx_change_password_begin (GGpgCtx                         *ctx,
                                   struct GGpgChangePasswordSource *source,
-                                  GTask *task,
-                                  GCancellable *cancellable)
+                                  GTask                           *task,
+                                  GCancellable                    *cancellable)
 {
   gpgme_error_t err;
 
@@ -1875,11 +1899,12 @@ _g_gpg_ctx_change_password_begin (GGpgCtx *ctx,
 }
 
 void
-g_gpg_ctx_change_password (GGpgCtx *ctx, GGpgKey *key,
-                           GGpgChangePasswordFlags flags,
-                           GCancellable *cancellable,
-                           GAsyncReadyCallback callback,
-                           gpointer user_data)
+g_gpg_ctx_change_password (GGpgCtx                 *ctx,
+                           GGpgKey                 *key,
+                           GGpgChangePasswordFlags  flags,
+                           GCancellable            *cancellable,
+                           GAsyncReadyCallback      callback,
+                           gpointer                 user_data)
 {
   GTask *task;
   struct GGpgChangePasswordSource *source;
@@ -1894,8 +1919,9 @@ g_gpg_ctx_change_password (GGpgCtx *ctx, GGpgKey *key,
 }
 
 gboolean
-g_gpg_ctx_change_password_finish (GGpgCtx *ctx, GAsyncResult *result,
-                                  GError **error)
+g_gpg_ctx_change_password_finish (GGpgCtx       *ctx,
+                                  GAsyncResult  *result,
+                                  GError       **error)
 {
   g_return_val_if_fail (g_task_is_valid (result, ctx), FALSE);
   return g_task_propagate_boolean (G_TASK (result), error);
@@ -1922,9 +1948,10 @@ g_gpg_edit_source_finalize (GSource *_source)
 }
 
 static gpgme_error_t
-_g_gpg_edit_cb (void *opaque,
-                gpgme_status_code_t status,
-                const char *args, int fd)
+_g_gpg_edit_cb (void                *opaque,
+                gpgme_status_code_t  status,
+                const char          *args,
+                int                  fd)
 {
   struct GGpgEditSource *source = opaque;
   GError *error = NULL;
@@ -1940,10 +1967,10 @@ _g_gpg_edit_cb (void *opaque,
 }
 
 static void
-_g_gpg_ctx_edit_begin (GGpgCtx *ctx,
+_g_gpg_ctx_edit_begin (GGpgCtx               *ctx,
                        struct GGpgEditSource *source,
-                       GTask *task,
-                       GCancellable *cancellable)
+                       GTask                 *task,
+                       GCancellable          *cancellable)
 {
   gpgme_error_t err;
 
@@ -1975,15 +2002,15 @@ _g_gpg_ctx_edit_begin (GGpgCtx *ctx,
  *
  */
 void
-g_gpg_ctx_edit (GGpgCtx *ctx,
-                GGpgKey *key,
-                GGpgEditCallback edit_callback,
-                gpointer edit_user_data,
-                GDestroyNotify edit_destroy,
-                GGpgData *out,
-                GCancellable *cancellable,
-                GAsyncReadyCallback callback,
-                gpointer user_data)
+g_gpg_ctx_edit (GGpgCtx             *ctx,
+                GGpgKey             *key,
+                GGpgEditCallback     edit_callback,
+                gpointer             edit_user_data,
+                GDestroyNotify       edit_destroy,
+                GGpgData            *out,
+                GCancellable        *cancellable,
+                GAsyncReadyCallback  callback,
+                gpointer             user_data)
 {
   GTask *task;
   struct GGpgEditSource *source;
@@ -2001,7 +2028,9 @@ g_gpg_ctx_edit (GGpgCtx *ctx,
 }
 
 gboolean
-g_gpg_ctx_edit_finish (GGpgCtx *ctx, GAsyncResult *result, GError **error)
+g_gpg_ctx_edit_finish (GGpgCtx       *ctx,
+                       GAsyncResult  *result,
+                       GError       **error)
 {
   g_return_val_if_fail (g_task_is_valid (result, ctx), FALSE);
   return g_task_propagate_boolean (G_TASK (result), error);
@@ -2024,10 +2053,10 @@ g_gpg_export_source_finalize (GSource *_source)
 }
 
 static void
-_g_gpg_ctx_export_begin (GGpgCtx *ctx,
+_g_gpg_ctx_export_begin (GGpgCtx                 *ctx,
                          struct GGpgExportSource *source,
-                         GTask *task,
-                         GCancellable *cancellable)
+                         GTask                   *task,
+                         GCancellable            *cancellable)
 {
   gpgme_error_t err;
 
@@ -2046,13 +2075,13 @@ _g_gpg_ctx_export_begin (GGpgCtx *ctx,
 }
 
 void
-g_gpg_ctx_export (GGpgCtx *ctx,
-                  const gchar *pattern,
-                  GGpgExportMode mode,
-                  GGpgData *keydata,
-                  GCancellable *cancellable,
-                  GAsyncReadyCallback callback,
-                  gpointer user_data)
+g_gpg_ctx_export (GGpgCtx             *ctx,
+                  const gchar         *pattern,
+                  GGpgExportMode       mode,
+                  GGpgData            *keydata,
+                  GCancellable        *cancellable,
+                  GAsyncReadyCallback  callback,
+                  gpointer             user_data)
 {
   GTask *task;
   struct GGpgExportSource *source;
@@ -2068,7 +2097,9 @@ g_gpg_ctx_export (GGpgCtx *ctx,
 }
 
 gboolean
-g_gpg_ctx_export_finish (GGpgCtx *ctx, GAsyncResult *result, GError **error)
+g_gpg_ctx_export_finish (GGpgCtx       *ctx,
+                         GAsyncResult  *result,
+                         GError       **error)
 {
   g_return_val_if_fail (g_task_is_valid (result, ctx), FALSE);
   return g_task_propagate_boolean (G_TASK (result), error);
@@ -2095,10 +2126,10 @@ g_gpg_export_keys_source_finalize (GSource *_source)
 }
 
 static void
-_g_gpg_ctx_export_keys_begin (GGpgCtx *ctx,
+_g_gpg_ctx_export_keys_begin (GGpgCtx                     *ctx,
                               struct GGpgExportKeysSource *source,
-                              GTask *task,
-                              GCancellable *cancellable)
+                              GTask                       *task,
+                              GCancellable                *cancellable)
 {
   gpgme_error_t err;
   gpgme_key_t *keys;
@@ -2138,13 +2169,13 @@ _g_gpg_ctx_export_keys_begin (GGpgCtx *ctx,
  *
  */
 void
-g_gpg_ctx_export_keys (GGpgCtx *ctx,
-                       GGpgKey **keys,
-                       GGpgExportMode mode,
-                       GGpgData *keydata,
-                       GCancellable *cancellable,
-                       GAsyncReadyCallback callback,
-                       gpointer user_data)
+g_gpg_ctx_export_keys (GGpgCtx              *ctx,
+                       GGpgKey             **keys,
+                       GGpgExportMode        mode,
+                       GGpgData             *keydata,
+                       GCancellable         *cancellable,
+                       GAsyncReadyCallback   callback,
+                       gpointer              user_data)
 {
   GTask *task;
   struct GGpgExportKeysSource *source;
@@ -2168,8 +2199,9 @@ g_gpg_ctx_export_keys (GGpgCtx *ctx,
 }
 
 gboolean
-g_gpg_ctx_export_keys_finish (GGpgCtx *ctx, GAsyncResult *result,
-                              GError **error)
+g_gpg_ctx_export_keys_finish (GGpgCtx       *ctx,
+                              GAsyncResult  *result,
+                              GError       **error)
 {
   g_return_val_if_fail (g_task_is_valid (result, ctx), FALSE);
   return g_task_propagate_boolean (G_TASK (result), error);
@@ -2189,10 +2221,10 @@ g_gpg_import_source_finalize (GSource *_source)
 }
 
 static void
-_g_gpg_ctx_import_begin (GGpgCtx *ctx,
+_g_gpg_ctx_import_begin (GGpgCtx                 *ctx,
                          struct GGpgImportSource *source,
-                         GTask *task,
-                         GCancellable *cancellable)
+                         GTask                   *task,
+                         GCancellable            *cancellable)
 {
   gpgme_error_t err;
 
@@ -2210,11 +2242,11 @@ _g_gpg_ctx_import_begin (GGpgCtx *ctx,
 }
 
 void
-g_gpg_ctx_import (GGpgCtx *ctx,
-                  GGpgData *keydata,
-                  GCancellable *cancellable,
-                  GAsyncReadyCallback callback,
-                  gpointer user_data)
+g_gpg_ctx_import (GGpgCtx             *ctx,
+                  GGpgData            *keydata,
+                  GCancellable        *cancellable,
+                  GAsyncReadyCallback  callback,
+                  gpointer             user_data)
 {
   GTask *task;
   struct GGpgImportSource *source;
@@ -2228,7 +2260,9 @@ g_gpg_ctx_import (GGpgCtx *ctx,
 }
 
 gboolean
-g_gpg_ctx_import_finish (GGpgCtx *ctx, GAsyncResult *result, GError **error)
+g_gpg_ctx_import_finish (GGpgCtx       *ctx,
+                         GAsyncResult  *result,
+                         GError       **error)
 {
   g_return_val_if_fail (g_task_is_valid (result, ctx), FALSE);
   return g_task_propagate_boolean (G_TASK (result), error);
@@ -2251,10 +2285,10 @@ g_gpg_import_keys_source_finalize (GSource *_source)
 }
 
 static void
-_g_gpg_ctx_import_keys_begin (GGpgCtx *ctx,
+_g_gpg_ctx_import_keys_begin (GGpgCtx                     *ctx,
                               struct GGpgImportKeysSource *source,
-                              GTask *task,
-                              GCancellable *cancellable)
+                              GTask                       *task,
+                              GCancellable                *cancellable)
 {
   gpgme_error_t err;
   gpgme_key_t *keys;
@@ -2291,11 +2325,11 @@ _g_gpg_ctx_import_keys_begin (GGpgCtx *ctx,
  *
  */
 void
-g_gpg_ctx_import_keys (GGpgCtx *ctx,
-                       GGpgKey **keys,
-                       GCancellable *cancellable,
-                       GAsyncReadyCallback callback,
-                       gpointer user_data)
+g_gpg_ctx_import_keys (GGpgCtx              *ctx,
+                       GGpgKey             **keys,
+                       GCancellable         *cancellable,
+                       GAsyncReadyCallback   callback,
+                       gpointer              user_data)
 {
   GTask *task;
   struct GGpgImportKeysSource *source;
@@ -2316,8 +2350,9 @@ g_gpg_ctx_import_keys (GGpgCtx *ctx,
 }
 
 gboolean
-g_gpg_ctx_import_keys_finish (GGpgCtx *ctx, GAsyncResult *result,
-                              GError **error)
+g_gpg_ctx_import_keys_finish (GGpgCtx       *ctx,
+                              GAsyncResult  *result,
+                              GError       **error)
 {
   g_return_val_if_fail (g_task_is_valid (result, ctx), FALSE);
   return g_task_propagate_boolean (G_TASK (result), error);
@@ -2345,10 +2380,10 @@ enum {
 static GParamSpec *import_status_pspecs[IMPORT_STATUS_LAST_PROP] = { NULL, };
 
 static void
-g_gpg_import_status_set_property (GObject *object,
-                                  guint property_id,
+g_gpg_import_status_set_property (GObject      *object,
+                                  guint         property_id,
                                   const GValue *value,
-                                  GParamSpec *pspec)
+                                  GParamSpec   *pspec)
 {
   GGpgImportStatus *import_status = G_GPG_IMPORT_STATUS (object);
 
@@ -2373,10 +2408,10 @@ g_gpg_import_status_set_property (GObject *object,
 }
 
 static void
-g_gpg_import_status_get_property (GObject *object,
-                                   guint property_id,
-                                   GValue *value,
-                                   GParamSpec *pspec)
+g_gpg_import_status_get_property (GObject    *object,
+                                  guint       property_id,
+                                  GValue     *value,
+                                  GParamSpec *pspec)
 {
   GGpgImportStatus *import_status = G_GPG_IMPORT_STATUS (object);
 
@@ -2478,10 +2513,10 @@ enum {
 static GParamSpec *import_result_pspecs[IMPORT_RESULT_LAST_PROP] = { NULL, };
 
 static void
-g_gpg_import_result_set_property (GObject *object,
-                                  guint property_id,
+g_gpg_import_result_set_property (GObject      *object,
+                                  guint         property_id,
                                   const GValue *value,
-                                  GParamSpec *pspec)
+                                  GParamSpec   *pspec)
 {
   GGpgImportResult *import_result = G_GPG_IMPORT_RESULT (object);
 
@@ -2502,10 +2537,10 @@ g_gpg_import_result_set_property (GObject *object,
 }
 
 static void
-g_gpg_import_result_get_property (GObject *object,
-                                   guint property_id,
-                                   GValue *value,
-                                   GParamSpec *pspec)
+g_gpg_import_result_get_property (GObject    *object,
+                                  guint       property_id,
+                                  GValue     *value,
+                                  GParamSpec *pspec)
 {
   GGpgImportResult *import_result = G_GPG_IMPORT_RESULT (object);
 
@@ -2714,10 +2749,10 @@ enum {
 static GParamSpec *recipient_pspecs[RECIPIENT_LAST_PROP] = { NULL, };
 
 static void
-g_gpg_recipient_set_property (GObject *object,
-                              guint property_id,
+g_gpg_recipient_set_property (GObject      *object,
+                              guint         property_id,
                               const GValue *value,
-                              GParamSpec *pspec)
+                              GParamSpec   *pspec)
 {
   GGpgRecipient *recipient = G_GPG_RECIPIENT (object);
 
@@ -2791,10 +2826,10 @@ enum {
 static GParamSpec *decrypt_result_pspecs[DECRYPT_RESULT_LAST_PROP] = { NULL, };
 
 static void
-g_gpg_decrypt_result_set_property (GObject *object,
-                                   guint property_id,
+g_gpg_decrypt_result_set_property (GObject      *object,
+                                   guint         property_id,
                                    const GValue *value,
-                                   GParamSpec *pspec)
+                                   GParamSpec   *pspec)
 {
   GGpgDecryptResult *decrypt_result = G_GPG_DECRYPT_RESULT (object);
 
@@ -2815,9 +2850,9 @@ g_gpg_decrypt_result_set_property (GObject *object,
 }
 
 static void
-g_gpg_decrypt_result_get_property (GObject *object,
-                                   guint property_id,
-                                   GValue *value,
+g_gpg_decrypt_result_get_property (GObject    *object,
+                                   guint       property_id,
+                                   GValue     *value,
                                    GParamSpec *pspec)
 {
   GGpgDecryptResult *decrypt_result = G_GPG_DECRYPT_RESULT (object);
@@ -2910,10 +2945,10 @@ g_gpg_decrypt_source_finalize (GSource *_source)
 }
 
 static void
-_g_gpg_ctx_decrypt_begin (GGpgCtx *ctx,
+_g_gpg_ctx_decrypt_begin (GGpgCtx                  *ctx,
                           struct GGpgDecryptSource *source,
-                          GTask *task,
-                          GCancellable *cancellable)
+                          GTask                    *task,
+                          GCancellable             *cancellable)
 {
   gpgme_error_t err;
 
@@ -2932,10 +2967,12 @@ _g_gpg_ctx_decrypt_begin (GGpgCtx *ctx,
 }
 
 void
-g_gpg_ctx_decrypt (GGpgCtx *ctx, GGpgData *cipher, GGpgData *plain,
-                   GCancellable *cancellable,
-                   GAsyncReadyCallback callback,
-                   gpointer user_data)
+g_gpg_ctx_decrypt (GGpgCtx             *ctx,
+                   GGpgData            *cipher,
+                   GGpgData            *plain,
+                   GCancellable        *cancellable,
+                   GAsyncReadyCallback  callback,
+                   gpointer             user_data)
 {
   GTask *task;
   struct GGpgDecryptSource *source;
@@ -2950,17 +2987,19 @@ g_gpg_ctx_decrypt (GGpgCtx *ctx, GGpgData *cipher, GGpgData *plain,
 }
 
 gboolean
-g_gpg_ctx_decrypt_finish (GGpgCtx *ctx, GAsyncResult *result, GError **error)
+g_gpg_ctx_decrypt_finish (GGpgCtx       *ctx,
+                          GAsyncResult  *result,
+                          GError       **error)
 {
   g_return_val_if_fail (g_task_is_valid (result, ctx), FALSE);
   return g_task_propagate_boolean (G_TASK (result), error);
 }
 
 static void
-_g_gpg_ctx_decrypt_verify_begin (GGpgCtx *ctx,
+_g_gpg_ctx_decrypt_verify_begin (GGpgCtx                  *ctx,
                                  struct GGpgDecryptSource *source,
-                                 GTask *task,
-                                 GCancellable *cancellable)
+                                 GTask                    *task,
+                                 GCancellable             *cancellable)
 {
   gpgme_error_t err;
 
@@ -2979,10 +3018,12 @@ _g_gpg_ctx_decrypt_verify_begin (GGpgCtx *ctx,
 }
 
 void
-g_gpg_ctx_decrypt_verify (GGpgCtx *ctx, GGpgData *cipher, GGpgData *plain,
-                          GCancellable *cancellable,
-                          GAsyncReadyCallback callback,
-                          gpointer user_data)
+g_gpg_ctx_decrypt_verify (GGpgCtx             *ctx,
+                          GGpgData            *cipher,
+                          GGpgData            *plain,
+                          GCancellable        *cancellable,
+                          GAsyncReadyCallback  callback,
+                          gpointer             user_data)
 {
   GTask *task;
   struct GGpgDecryptSource *source;
@@ -2997,8 +3038,9 @@ g_gpg_ctx_decrypt_verify (GGpgCtx *ctx, GGpgData *cipher, GGpgData *plain,
 }
 
 gboolean
-g_gpg_ctx_decrypt_verify_finish (GGpgCtx *ctx, GAsyncResult *result,
-                                 GError **error)
+g_gpg_ctx_decrypt_verify_finish (GGpgCtx       *ctx,
+                                 GAsyncResult  *result,
+                                 GError       **error)
 {
   g_return_val_if_fail (g_task_is_valid (result, ctx), FALSE);
   return g_task_propagate_boolean (G_TASK (result), error);
@@ -3047,10 +3089,10 @@ static GParamSpec *signature_notation_pspecs[SIGNATURE_NOTATION_LAST_PROP] =
   { NULL, };
 
 static void
-g_gpg_signature_notation_set_property (GObject *object,
-                                       guint property_id,
+g_gpg_signature_notation_set_property (GObject      *object,
+                                       guint         property_id,
                                        const GValue *value,
-                                       GParamSpec *pspec)
+                                       GParamSpec   *pspec)
 {
   GGpgSignatureNotation *signature_notation = G_GPG_SIGNATURE_NOTATION (object);
 
@@ -3071,9 +3113,9 @@ g_gpg_signature_notation_set_property (GObject *object,
 }
 
 static void
-g_gpg_signature_notation_get_property (GObject *object,
-                                       guint property_id,
-                                       GValue *value,
+g_gpg_signature_notation_get_property (GObject    *object,
+                                       guint       property_id,
+                                       GValue     *value,
                                        GParamSpec *pspec)
 {
   GGpgSignatureNotation *signature_notation = G_GPG_SIGNATURE_NOTATION (object);
@@ -3200,10 +3242,10 @@ enum {
 static GParamSpec *signature_pspecs[SIGNATURE_LAST_PROP] = { NULL, };
 
 static void
-g_gpg_signature_set_property (GObject *object,
-                              guint property_id,
+g_gpg_signature_set_property (GObject      *object,
+                              guint         property_id,
                               const GValue *value,
-                              GParamSpec *pspec)
+                              GParamSpec   *pspec)
 {
   GGpgSignature *signature = G_GPG_SIGNATURE (object);
 
@@ -3224,9 +3266,9 @@ g_gpg_signature_set_property (GObject *object,
 }
 
 static void
-g_gpg_signature_get_property (GObject *object,
-                              guint property_id,
-                              GValue *value,
+g_gpg_signature_get_property (GObject    *object,
+                              guint       property_id,
+                              GValue     *value,
                               GParamSpec *pspec)
 {
   GGpgSignature *signature = G_GPG_SIGNATURE (object);
@@ -3450,10 +3492,10 @@ enum {
 static GParamSpec *verify_result_pspecs[VERIFY_RESULT_LAST_PROP] = { NULL, };
 
 static void
-g_gpg_verify_result_set_property (GObject *object,
-                                   guint property_id,
-                                   const GValue *value,
-                                   GParamSpec *pspec)
+g_gpg_verify_result_set_property (GObject      *object,
+                                  guint         property_id,
+                                  const GValue *value,
+                                  GParamSpec   *pspec)
 {
   GGpgVerifyResult *verify_result = G_GPG_VERIFY_RESULT (object);
 
@@ -3474,9 +3516,9 @@ g_gpg_verify_result_set_property (GObject *object,
 }
 
 static void
-g_gpg_verify_result_get_property (GObject *object,
-                                  guint property_id,
-                                  GValue *value,
+g_gpg_verify_result_get_property (GObject    *object,
+                                  guint       property_id,
+                                  GValue     *value,
                                   GParamSpec *pspec)
 {
   GGpgVerifyResult *verify_result = G_GPG_VERIFY_RESULT (object);
@@ -3571,10 +3613,10 @@ g_gpg_verify_source_finalize (GSource *_source)
 }
 
 static void
-_g_gpg_ctx_verify_begin (GGpgCtx *ctx,
+_g_gpg_ctx_verify_begin (GGpgCtx                 *ctx,
                          struct GGpgVerifySource *source,
-                         GTask *task,
-                         GCancellable *cancellable)
+                         GTask                   *task,
+                         GCancellable            *cancellable)
 {
   gpgme_error_t err;
 
@@ -3594,11 +3636,13 @@ _g_gpg_ctx_verify_begin (GGpgCtx *ctx,
 }
 
 void
-g_gpg_ctx_verify (GGpgCtx *ctx, GGpgData *sig, GGpgData *signed_text,
-                  GGpgData *plain,
-                  GCancellable *cancellable,
-                  GAsyncReadyCallback callback,
-                  gpointer user_data)
+g_gpg_ctx_verify (GGpgCtx             *ctx,
+                  GGpgData            *sig,
+                  GGpgData            *signed_text,
+                  GGpgData            *plain,
+                  GCancellable        *cancellable,
+                  GAsyncReadyCallback  callback,
+                  gpointer             user_data)
 {
   GTask *task;
   struct GGpgVerifySource *source;
@@ -3614,7 +3658,9 @@ g_gpg_ctx_verify (GGpgCtx *ctx, GGpgData *sig, GGpgData *signed_text,
 }
 
 gboolean
-g_gpg_ctx_verify_finish (GGpgCtx *ctx, GAsyncResult *result, GError **error)
+g_gpg_ctx_verify_finish (GGpgCtx       *ctx,
+                         GAsyncResult  *result,
+                         GError       **error)
 {
   g_return_val_if_fail (g_task_is_valid (result, ctx), FALSE);
   return g_task_propagate_boolean (G_TASK (result), error);
@@ -3638,7 +3684,8 @@ g_gpg_ctx_verify_result (GGpgCtx *ctx)
 }
 
 void
-g_gpg_ctx_add_signer (GGpgCtx *ctx, GGpgKey *key)
+g_gpg_ctx_add_signer (GGpgCtx *ctx,
+                      GGpgKey *key)
 {
   g_mutex_lock (&ctx->lock);
   g_ptr_array_add (ctx->signers, g_object_ref (key));
@@ -3698,10 +3745,10 @@ enum {
 static GParamSpec *new_signature_pspecs[NEW_SIGNATURE_LAST_PROP] = { NULL, };
 
 static void
-g_gpg_new_signature_set_property (GObject *object,
-                                  guint property_id,
+g_gpg_new_signature_set_property (GObject      *object,
+                                  guint         property_id,
                                   const GValue *value,
-                                  GParamSpec *pspec)
+                                  GParamSpec   *pspec)
 {
   GGpgNewSignature *new_signature = G_GPG_NEW_SIGNATURE (object);
 
@@ -3722,9 +3769,9 @@ g_gpg_new_signature_set_property (GObject *object,
 }
 
 static void
-g_gpg_new_signature_get_property (GObject *object,
-                                  guint property_id,
-                                  GValue *value,
+g_gpg_new_signature_get_property (GObject    *object,
+                                  guint       property_id,
+                                  GValue     *value,
                                   GParamSpec *pspec)
 {
   GGpgNewSignature *new_signature = G_GPG_NEW_SIGNATURE (object);
@@ -3843,10 +3890,10 @@ enum {
 static GParamSpec *invalid_key_pspecs[INVALID_KEY_LAST_PROP] = { NULL, };
 
 static void
-g_gpg_invalid_key_set_property (GObject *object,
-                                guint property_id,
+g_gpg_invalid_key_set_property (GObject      *object,
+                                guint         property_id,
                                 const GValue *value,
-                                GParamSpec *pspec)
+                                GParamSpec   *pspec)
 {
   GGpgInvalidKey *invalid_key = G_GPG_INVALID_KEY (object);
 
@@ -3867,9 +3914,9 @@ g_gpg_invalid_key_set_property (GObject *object,
 }
 
 static void
-g_gpg_invalid_key_get_property (GObject *object,
-                                guint property_id,
-                                GValue *value,
+g_gpg_invalid_key_get_property (GObject    *object,
+                                guint       property_id,
+                                GValue     *value,
                                 GParamSpec *pspec)
 {
   GGpgInvalidKey *invalid_key = G_GPG_INVALID_KEY (object);
@@ -3942,10 +3989,10 @@ enum {
 static GParamSpec *sign_result_pspecs[SIGN_RESULT_LAST_PROP] = { NULL, };
 
 static void
-g_gpg_sign_result_set_property (GObject *object,
-                                guint property_id,
+g_gpg_sign_result_set_property (GObject      *object,
+                                guint         property_id,
                                 const GValue *value,
-                                GParamSpec *pspec)
+                                GParamSpec   *pspec)
 {
   GGpgSignResult *sign_result = G_GPG_SIGN_RESULT (object);
 
@@ -4059,10 +4106,10 @@ g_gpg_sign_source_finalize (GSource *_source)
 }
 
 static void
-_g_gpg_ctx_sign_begin (GGpgCtx *ctx,
+_g_gpg_ctx_sign_begin (GGpgCtx               *ctx,
                        struct GGpgSignSource *source,
-                       GTask *task,
-                       GCancellable *cancellable)
+                       GTask                 *task,
+                       GCancellable          *cancellable)
 {
   gpgme_error_t err;
 
@@ -4081,10 +4128,13 @@ _g_gpg_ctx_sign_begin (GGpgCtx *ctx,
 }
 
 void
-g_gpg_ctx_sign (GGpgCtx *ctx, GGpgData *plain, GGpgData *sig, GGpgSignMode mode,
-                GCancellable *cancellable,
-                GAsyncReadyCallback callback,
-                gpointer user_data)
+g_gpg_ctx_sign (GGpgCtx             *ctx,
+                GGpgData            *plain,
+                GGpgData            *sig,
+                GGpgSignMode         mode,
+                GCancellable        *cancellable,
+                GAsyncReadyCallback  callback,
+                gpointer             user_data)
 {
   GTask *task;
   struct GGpgSignSource *source;
@@ -4100,7 +4150,9 @@ g_gpg_ctx_sign (GGpgCtx *ctx, GGpgData *plain, GGpgData *sig, GGpgSignMode mode,
 }
 
 gboolean
-g_gpg_ctx_sign_finish (GGpgCtx *ctx, GAsyncResult *result, GError **error)
+g_gpg_ctx_sign_finish (GGpgCtx       *ctx,
+                       GAsyncResult  *result,
+                       GError       **error)
 {
   g_return_val_if_fail (g_task_is_valid (result, ctx), FALSE);
   return g_task_propagate_boolean (G_TASK (result), error);
@@ -4140,10 +4192,10 @@ enum {
 static GParamSpec *encrypt_result_pspecs[ENCRYPT_RESULT_LAST_PROP] = { NULL, };
 
 static void
-g_gpg_encrypt_result_set_property (GObject *object,
-                                   guint property_id,
+g_gpg_encrypt_result_set_property (GObject      *object,
+                                   guint         property_id,
                                    const GValue *value,
-                                   GParamSpec *pspec)
+                                   GParamSpec   *pspec)
 {
   GGpgEncryptResult *encrypt_result = G_GPG_ENCRYPT_RESULT (object);
 
@@ -4242,10 +4294,10 @@ g_gpg_encrypt_source_finalize (GSource *_source)
 }
 
 static void
-_g_gpg_ctx_encrypt_begin (GGpgCtx *ctx,
+_g_gpg_ctx_encrypt_begin (GGpgCtx                  *ctx,
                           struct GGpgEncryptSource *source,
-                          GTask *task,
-                          GCancellable *cancellable)
+                          GTask                    *task,
+                          GCancellable             *cancellable)
 {
   gpgme_error_t err;
 
@@ -4266,12 +4318,14 @@ _g_gpg_ctx_encrypt_begin (GGpgCtx *ctx,
 }
 
 void
-g_gpg_ctx_encrypt (GGpgCtx *ctx, GGpgKey **recipients,
-                   GGpgData *plain, GGpgData *cipher,
-                   GGpgEncryptFlags flags,
-                   GCancellable *cancellable,
-                   GAsyncReadyCallback callback,
-                   gpointer user_data)
+g_gpg_ctx_encrypt (GGpgCtx              *ctx,
+                   GGpgKey             **recipients,
+                   GGpgData             *plain,
+                   GGpgData             *cipher,
+                   GGpgEncryptFlags      flags,
+                   GCancellable         *cancellable,
+                   GAsyncReadyCallback   callback,
+                   gpointer              user_data)
 {
   GTask *task;
   struct GGpgEncryptSource *source;
@@ -4299,7 +4353,9 @@ g_gpg_ctx_encrypt (GGpgCtx *ctx, GGpgKey **recipients,
 }
 
 gboolean
-g_gpg_ctx_encrypt_finish (GGpgCtx *ctx, GAsyncResult *result, GError **error)
+g_gpg_ctx_encrypt_finish (GGpgCtx       *ctx,
+                          GAsyncResult  *result,
+                          GError       **error)
 {
   g_return_val_if_fail (g_task_is_valid (result, ctx), FALSE);
   return g_task_propagate_boolean (G_TASK (result), error);
