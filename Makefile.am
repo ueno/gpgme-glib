@@ -72,6 +72,7 @@ CLEANFILES += $(gir_DATA) $(typelib_DATA)
 endif
 endif
 
+if ENABLE_VAPIGEN
 if GPGME_GLIB_VAPI
 -include $(VAPIGEN_MAKEFILE)
 
@@ -86,6 +87,7 @@ gpgme_glib_1_0_vapi_FILES = Gpgme-1.0.gir
 noinst_DATA += $(VAPIGEN_VAPIS)
 EXTRA_DIST += $(VAPIGEN_VAPIS) Gpgme-1.0.metadata
 MAINTAINERCLEANFILES += $(VAPIGEN_VAPIS)
+endif
 endif
 
 -include $(top_srcdir)/git.mk
