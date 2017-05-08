@@ -89,5 +89,3 @@ EXTRA_DIST += $(VAPIGEN_VAPIS) Gpgme-1.0.metadata
 MAINTAINERCLEANFILES += $(VAPIGEN_VAPIS)
 endif
 endif
-
--include $(top_srcdir)/git.mk
