@@ -32,7 +32,7 @@ G_DEFINE_QUARK (g-gpg-error-quark, g_gpg_error)
 const gchar *
 g_gpg_check_version (const gchar *version)
 {
-  gpgme_check_version (version);
+  return gpgme_check_version (version);
 }
 
 struct _GGpgEngineInfo
