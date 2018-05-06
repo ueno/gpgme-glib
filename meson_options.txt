@@ -1,0 +1,2 @@
+option('gir', type: 'boolean', value: true, description: 'Create a GIR file.')
+option('vapi', type: 'boolean', value: true, description: 'Create a VAPI file (also creates a GIR file).')
